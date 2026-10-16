@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Example</title>
+    <style>
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .upload-area-title {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .upload-area-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        #file-info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-area" onclick="selectFile()">
+        <span class="upload-area-title">Drag file(s) here to upload.</span>
+        <span class="upload-area-description">
+            Alternatively, you can select a file by <br />
+            <strong>clicking here</strong>
+        </span>
+    </div>
+
+    <input type="file" id="file-input" multiple onchange="handleFiles(this.files)" />
+
+    <div id="file-info"></div>
+
+    <script>
+        function selectFile() {
+            document.getElementById('file-input').click();
+        }
+        
+        function handleFiles(files) {
+            const fileInfo = document.getElementById('file-info');
+            fileInfo.innerHTML = '';
+
+            if (files.length > 0) {
+                fileInfo.innerHTML = '<strong>Selected File(s):</strong><br>';
+                for (const file of files) {
+                    fileInfo.innerHTML += `- ${file.name}<br>`;
+                }
+            } else {
+                fileInfo.innerHTML = '<strong>No file selected.</strong>';
+            }
+        }
+    </script>
+
+</body>
+</html>
